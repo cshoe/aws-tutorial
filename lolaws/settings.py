@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     # external
     'storages',
     'django_ses',
+    'sorl-thumbnail',
 
     # disapp
     'lolaws.core',
@@ -151,6 +152,12 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+    }
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
 
