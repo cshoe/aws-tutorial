@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load thumbnail %}
+
 {% block title %}- uploadr{% endblock %}
 
 {% block content %}
@@ -14,7 +16,12 @@
     <div class="grid_8 picture_frame">
         {% for upload in recent_uploads %}
             {{ upload.upload_date }}<br>
-            <a href="{{ upload.image.url }}"><img src="{{ upload.image.url }}" width="50%"></a><br>
+            <a href="{{ upload.image.url }}">
+            {% thumbnail upload.image "150x150" as im %}
+                <img src="{{ im.url }}">
+            {% endthumbnail %}
+            </a>
+            <br>
         {% empty %}
             <h3>No images uploaded yet.</h3>
         {% endfor %}

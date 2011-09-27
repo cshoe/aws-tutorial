@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 
+{% load thumbnail %}
+
 {% block title %}- success!{% endblock %}
 
 {% block content %}
     <h2>Image Uploaded!</h2>
-    <a href="{{ upload.image.url }}"><img src="{{ upload.image.url }}" width="50%"></a>
+    <a href="{{ upload.image.url }}">
+        {% thumbnail upload.image "200x200" as im %}
+            <img src="{{ im.url }}">
+        {% endthumbnail %}
+    </a>
     <br/>
-
     {% if message %}
         <h3 style="color:{{ color }};">{{ message }}</h3>
     {% endif %}
